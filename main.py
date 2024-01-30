@@ -57,3 +57,20 @@ mojLinked = LinkedList()
 mojLinked.obsahuje("Milan")
 print(mojLinked.obsahuje("Milan"))
 print("test")
+
+import pickle
+class Student():
+    def __init__(self,name,age,country):
+        self.name=name
+        self.age=age
+        self.country=country
+
+    def __str__(self):
+        return f"Student sa vola {self.name} je y krajiny {self.country} a ma {self.age} rokov"
+
+patrik=Student("Patrik",30,"Slovakia")
+print(patrik)
+serialized = pickle.dumps(patrik)
+print(serialized)
+patrik_obnoveny=pickle.loads(serialized)
+print(patrik_obnoveny)
