@@ -68,9 +68,22 @@ class Student():
     def __str__(self):
         return f"Student sa vola {self.name} je y krajiny {self.country} a ma {self.age} rokov"
 
+    def vloz_do_suboru(self,nazov_suboru):
+        with open(nazov_suboru,"wb") as file:
+            pickle.dump(self,file)
+
+    @staticmethod
+    def vytvor_zo_suboru(nazov_suboru):
+        with open(nazov_suboru,"rb") as file:
+            return pickle.load(file)
+
+
 patrik=Student("Patrik",30,"Slovakia")
+patrik.vloz_do_suboru("patrik.dat")
 print(patrik)
 serialized = pickle.dumps(patrik)
 print(serialized)
 patrik_obnoveny=pickle.loads(serialized)
 print(patrik_obnoveny)
+patrik_zo_suboru=Student.vytvor_zo_suboru("patrik.dat")
+print(patrik_zo_suboru)
